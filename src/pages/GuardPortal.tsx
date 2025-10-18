@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { db } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
-import { Button, Card, StatusBadge, PageHeader, StatsCard, EmptyState, Input, Select, Textarea } from '@/components/ui/MobileComponents'
+import { Button, Card, StatusBadge, StatsCard, EmptyState, Input, Select, Textarea } from '@/components/ui/MobileComponents'
 import { getGuardStatus, getNextOnDate, getNextOffDate, formatDateWithDay } from '@/utils/scheduling'
 
 export default function GuardPortal() {
@@ -153,21 +153,18 @@ export default function GuardPortal() {
         {selectedTab === 'schedule' && (
           <ScheduleTab 
             assignments={upcomingAssignments}
-            guard={currentGuard}
           />
         )}
 
         {selectedTab === 'leave' && (
           <LeaveTab 
             leaveRequests={leaveRequests?.data || []}
-            guard={currentGuard}
           />
         )}
 
         {selectedTab === 'swaps' && (
           <SwapsTab 
             swaps={guardSwaps}
-            guard={currentGuard}
           />
         )}
       </div>
@@ -176,7 +173,7 @@ export default function GuardPortal() {
 }
 
 // Schedule Tab Component
-function ScheduleTab({ assignments, guard }: { assignments: any[], guard: any }) {
+function ScheduleTab({ assignments }: { assignments: any[] }) {
   return (
     <div className="space-y-4">
       <Card>
@@ -233,7 +230,7 @@ function ScheduleTab({ assignments, guard }: { assignments: any[], guard: any })
 }
 
 // Leave Tab Component
-function LeaveTab({ leaveRequests, guard }: { leaveRequests: any[], guard: any }) {
+function LeaveTab({ leaveRequests }: { leaveRequests: any[] }) {
   const [showLeaveForm, setShowLeaveForm] = useState(false)
 
   return (
@@ -288,7 +285,6 @@ function LeaveTab({ leaveRequests, guard }: { leaveRequests: any[], guard: any }
 
       {showLeaveForm && (
         <LeaveRequestForm 
-          guard={guard}
           onClose={() => setShowLeaveForm(false)}
         />
       )}
@@ -297,7 +293,7 @@ function LeaveTab({ leaveRequests, guard }: { leaveRequests: any[], guard: any }
 }
 
 // Swaps Tab Component
-function SwapsTab({ swaps, guard }: { swaps: any[], guard: any }) {
+function SwapsTab({ swaps }: { swaps: any[] }) {
   const [showSwapForm, setShowSwapForm] = useState(false)
 
   return (
