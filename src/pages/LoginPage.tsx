@@ -23,7 +23,7 @@ export default function LoginPage() {
     const { error } = await signIn(email)
     
     if (error) {
-      setMessage('Error: ' + error.message)
+      setMessage('Error: ' + (error as any).message)
     } else {
       setMessage('Check your email for the login link!')
     }

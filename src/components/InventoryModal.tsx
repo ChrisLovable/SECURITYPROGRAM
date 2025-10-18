@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { inventoryService, employeeService } from '../services/supabaseService';
 
 interface InventoryModalProps {

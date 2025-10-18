@@ -132,8 +132,8 @@ export default function FirearmInventoryModal({ isOpen, onClose }: FirearmInvent
       await loadData();
     } catch (error) {
       console.error('❌ Error assigning firearm:', error);
-      console.error('Error details:', error.message, error.code, error.details);
-      alert(`Failed to assign firearm: ${error.message || 'Unknown error'}`);
+      console.error('Error details:', (error as any).message, (error as any).code, (error as any).details);
+      alert(`Failed to assign firearm: ${(error as any).message || 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
@@ -195,8 +195,8 @@ export default function FirearmInventoryModal({ isOpen, onClose }: FirearmInvent
       await loadData();
     } catch (error) {
       console.error('❌ Error changing status:', error);
-      console.error('Error details:', error.message, error.code, error.details);
-      alert(`Failed to change status: ${error.message || 'Unknown error'}`);
+      console.error('Error details:', (error as any).message, (error as any).code, (error as any).details);
+      alert(`Failed to change status: ${(error as any).message || 'Unknown error'}`);
     } finally {
       setLoading(false);
     }

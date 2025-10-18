@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAssignments } from '../contexts/AssignmentContext';
 import { supabase } from '../lib/supabase';
 import { employeeService, gearService } from '../services/supabaseService';

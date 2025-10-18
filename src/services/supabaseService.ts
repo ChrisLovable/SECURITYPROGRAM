@@ -242,8 +242,8 @@ export const inventoryService = {
   async getInventoryStats(): Promise<any> {
     const { data, error } = await supabase
       .from('inventory_items')
-      .select('status, count(*)', { count: 'exact' })
-      .group('status')
+      .select('status')
+      .neq('status', null)
     if (error) throw error
     return data || []
   },
@@ -351,29 +351,17 @@ export const gearService = {
   }
 }
 
-export const performanceService = {
-  async getPerformanceNotes(_employeeId: string): Promise<any[]> {
+export const shiftService = {
+  async getShiftAssignments(): Promise<any[]> {
     return []
   },
-  async getEmployeePerformanceNotes(_employeeId: string): Promise<any[]> {
-    return []
+  async createShiftAssignment(assignment: any): Promise<any> {
+    return assignment
   },
-  async addPerformanceNote(_note: any): Promise<any> {
-    return _note
+  async updateShiftAssignment(id: string, updates: any): Promise<any> {
+    return updates
   },
-  async createPerformanceNote(_note: any): Promise<any> {
-    return _note
-  },
-  async updatePerformanceNote(_id: string, _updates: any): Promise<any> {
-    return _updates
-  },
-  async deletePerformanceNote(_id: string): Promise<void> {
+  async deleteShiftAssignment(id: string): Promise<void> {
     return
-  },
-  async getPerformanceSummary(_employeeId: string): Promise<any> {
-    return null
-  },
-  async getEmployeePerformanceSummary(_employeeId: string): Promise<any> {
-    return null
   }
 }
