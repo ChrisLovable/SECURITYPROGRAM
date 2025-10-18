@@ -222,6 +222,136 @@ export interface Database {
           created_at?: string
         }
       }
+      employees: {
+        Row: {
+          id: string
+          employee_number: string
+          name: string
+          psira_number?: string
+          id_number?: string
+          cellphone_number?: string
+          email?: string
+          address?: string
+          bank_details?: string
+          medical_aid?: string
+          next_of_kin?: string
+          next_of_kin_number?: string
+          emergency_contact?: string
+          emergency_contact_number?: string
+          appointment_date?: string
+          experience_level?: string
+          status: 'active' | 'inactive' | 'terminated'
+          performance_rating?: number
+          qualifications?: string[]
+          languages?: string[]
+          skills?: string[]
+          notes?: string
+          photo_url?: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          employee_number: string
+          name: string
+          psira_number?: string
+          id_number?: string
+          cellphone_number?: string
+          email?: string
+          address?: string
+          bank_details?: string
+          medical_aid?: string
+          next_of_kin?: string
+          next_of_kin_number?: string
+          emergency_contact?: string
+          emergency_contact_number?: string
+          appointment_date?: string
+          experience_level?: string
+          status?: 'active' | 'inactive' | 'terminated'
+          performance_rating?: number
+          qualifications?: string[]
+          languages?: string[]
+          skills?: string[]
+          notes?: string
+          photo_url?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          employee_number?: string
+          name?: string
+          psira_number?: string
+          id_number?: string
+          cellphone_number?: string
+          email?: string
+          address?: string
+          bank_details?: string
+          medical_aid?: string
+          next_of_kin?: string
+          next_of_kin_number?: string
+          emergency_contact?: string
+          emergency_contact_number?: string
+          appointment_date?: string
+          experience_level?: string
+          status?: 'active' | 'inactive' | 'terminated'
+          performance_rating?: number
+          qualifications?: string[]
+          languages?: string[]
+          skills?: string[]
+          notes?: string
+          photo_url?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      leave_periods: {
+        Row: {
+          id: string
+          employee_id: string
+          leave_type: 'rest_day' | 'annual_leave' | 'sick_leave' | 'emergency_leave'
+          start_date: string
+          end_date: string
+          days_count: number
+          reason?: string
+          approved_by?: string
+          approved_at?: string
+          status: string
+          notes?: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          employee_id: string
+          leave_type: 'rest_day' | 'annual_leave' | 'sick_leave' | 'emergency_leave'
+          start_date: string
+          end_date: string
+          days_count?: number
+          reason?: string
+          approved_by?: string
+          approved_at?: string
+          status?: string
+          notes?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          employee_id?: string
+          leave_type?: 'rest_day' | 'annual_leave' | 'sick_leave' | 'emergency_leave'
+          start_date?: string
+          end_date?: string
+          days_count?: number
+          reason?: string
+          approved_by?: string
+          approved_at?: string
+          status?: string
+          notes?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
   }
 }
@@ -233,3 +363,5 @@ export type Swap = Database['public']['Tables']['swaps']['Row']
 export type Notification = Database['public']['Tables']['notifications']['Row']
 export type LeaveRequest = Database['public']['Tables']['leave_requests']['Row']
 export type UserRole = Database['public']['Tables']['user_roles']['Row']
+export type Employee = Database['public']['Tables']['employees']['Row']
+export type LeavePeriod = Database['public']['Tables']['leave_periods']['Row']

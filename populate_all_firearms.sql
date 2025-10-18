@@ -177,3 +177,4 @@ SELECT 'Total firearms: ' || COUNT(*) as total_count FROM firearms;
 
 
 
+

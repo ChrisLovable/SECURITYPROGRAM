@@ -1,4 +1,7 @@
-import { Guard, Site, Assignment, Swap, Notification, LeaveRequest, UserRole } from './database'
+import { Guard, Site, Assignment, Swap, Notification, LeaveRequest, UserRole, Employee, LeavePeriod } from './database'
+
+// Re-export types for easier access
+export type { Guard, Site, Assignment, Swap, Notification, LeaveRequest, UserRole, Employee, LeavePeriod }
 
 export interface GuardWithSite extends Guard {
   site?: Site

@@ -73,3 +73,4 @@ WHERE '2025-10-07'::date BETWEEN rp.start_date AND rp.end_date;
 
 
 
+

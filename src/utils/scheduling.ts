@@ -1,6 +1,6 @@
 import { differenceInDays, addDays, format } from 'date-fns'
 import { zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz'
-import { Guard, Site, Assignment, GuardStatus, CYCLE_LENGTH, ON_DUTY_DAYS, TIMEZONE } from '@/types'
+import { Guard, Assignment, GuardStatus, CYCLE_LENGTH, ON_DUTY_DAYS, TIMEZONE } from '@/types'
 
 /**
  * Determines if a guard is ON duty on a given day based on their cycle

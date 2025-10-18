@@ -92,3 +92,4 @@ WHERE daterange(rp.start_date, rp.end_date, '[]') && daterange(lp.start_date, lp
 
 
 
+

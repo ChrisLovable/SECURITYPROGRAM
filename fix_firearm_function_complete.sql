@@ -54,3 +54,4 @@ SELECT * FROM get_firearm_details() LIMIT 3;
 
 
 
+

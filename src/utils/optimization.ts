@@ -1,7 +1,6 @@
-import { addDays, format, differenceInDays } from 'date-fns'
+import { addDays, format } from 'date-fns'
 import { Guard, Site, Assignment } from '@/types'
 import { 
-  isOnDuty, 
   getOnDutyGuards, 
   getDaysWorkedAtSite, 
   getTotalDaysWorked, 

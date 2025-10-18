@@ -45,3 +45,4 @@ SELECT 'New statuses available: available, assigned, maintenance, retired, polic
 
 
 
+

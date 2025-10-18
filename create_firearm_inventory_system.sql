@@ -394,3 +394,4 @@ COMMENT ON FUNCTION unassign_firearm(UUID) IS 'Unassigns a firearm and marks it 
 
 
 
+
