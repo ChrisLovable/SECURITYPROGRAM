@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { employeeService, gearService } from '../services/supabaseService';
 
@@ -158,54 +158,7 @@ export default function GuardIntelligenceModal({ isOpen, onClose }: GuardIntelli
   }, [isOpen]);
 
   // Calculate guard availability for selected date
-  const guardAvailability = useMemo(() => {
-    const availability: any[] = [];
-    const selectedDateObj = new Date(selectedDate);
-    
-    employees.forEach(employee => {
-      // Check if employee is on rest
-      const restPeriod = restPeriods.find(rp => 
-        rp.employee_id === employee.id &&
-        selectedDateObj >= new Date(rp.start_date) &&
-        selectedDateObj <= new Date(rp.end_date)
-      );
-      
-      // Check if employee is on leave
-      const leavePeriod = leavePeriods.find(lp => 
-        lp.employee_id === employee.id &&
-        selectedDateObj >= new Date(lp.start_date) &&
-        selectedDateObj <= new Date(lp.end_date)
-      );
-      
-      let status: 'available' | 'on-rest' | 'on-leave';
-
-      if (leavePeriod) {
-        status = 'on-leave';
-      } else if (restPeriod) {
-        status = 'on-rest';
-      } else {
-        status = 'available';
-      }
-
-      availability.push({
-        employee,
-        status,
-        restPeriod,
-        leavePeriod
-      });
-    });
-
-    const availableCount = availability.filter(a => a.status === 'available').length;
-    const restCount = availability.filter(a => a.status === 'on-rest').length;
-    const leaveCount = availability.filter(a => a.status === 'on-leave').length;
-    
-    return {
-      available: availableCount,
-      onRest: restCount,
-      onLeave: leaveCount,
-      total: availability.length
-    };
-  }, [selectedDate, employees, restPeriods, leavePeriods]);
+  // Note: Guard availability calculation removed as it was unused
 
   // Helper function to calculate guard availability for a specific date
   const calculateGuardAvailabilityForDate = (dateStr: string) => {
@@ -424,9 +377,7 @@ export default function GuardIntelligenceModal({ isOpen, onClose }: GuardIntelli
   };
 
   // Get conflicts for selected date
-  const conflictsForDate = useMemo(() => {
-    return coverageConflicts.filter(conflict => conflict.assigned_date === selectedDate);
-  }, [coverageConflicts, selectedDate]);
+  // Note: Conflicts calculation removed as it was unused
 
   if (!isOpen) return null;
 

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { shiftService, employeeService, siteService, leaveService, gearService } from '../services/supabaseService';
+import { employeeService, siteService, gearService } from '../services/supabaseService';
 import { useAssignments } from '../contexts/AssignmentContext';
 
 interface GuardTimetableModalProps {

@@ -1,8 +1,8 @@
 import { Button } from './ui/MobileComponents'
 
 export default function DemoModeBanner() {
-  const isDemoMode = import.meta.env.VITE_SUPABASE_URL === 'https://demo.supabase.co' || 
-                     !import.meta.env.VITE_SUPABASE_URL
+  const isDemoMode = (import.meta as any).env?.VITE_SUPABASE_URL === 'https://demo.supabase.co' ||
+                     !(import.meta as any).env?.VITE_SUPABASE_URL
 
   if (!isDemoMode) return null
 

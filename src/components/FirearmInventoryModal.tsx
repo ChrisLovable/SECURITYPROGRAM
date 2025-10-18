@@ -76,7 +76,7 @@ export default function FirearmInventoryModal({ isOpen, onClose }: FirearmInvent
       setSummary(summaryData);
       
       // Load firearm details
-      const firearmsData = await firearmService.getFirearmDetails();
+      const firearmsData = await firearmService.getFirearmDetails('');
       setFirearms(firearmsData);
       
       // Load employees and sites for assignment
@@ -111,9 +111,7 @@ export default function FirearmInventoryModal({ isOpen, onClose }: FirearmInvent
       
       const result = await firearmService.assignFirearm(
         selectedFirearm.firearm_id,
-        assignmentForm.employee_id,
-        assignmentForm.site_id,
-        'System Admin'
+        assignmentForm.employee_id
       );
       
       console.log('✅ Assignment result:', result);

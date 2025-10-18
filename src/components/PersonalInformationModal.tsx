@@ -113,7 +113,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         setSites(sitesData);
         
         // Load firearms
-        const firearmsData = await firearmService.getFirearmDetails();
+        const firearmsData = await firearmService.getFirearmDetails('');
         setFirearms(firearmsData);
         
       } catch (error) {
@@ -217,7 +217,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
       // Load currently assigned firearm for this employee
       try {
         console.log('🔫 Loading assigned firearm for employee:', employeeId);
-        const assignedFirearms = await firearmService.getFirearmsByEmployee();
+        const assignedFirearms = await firearmService.getFirearmsByEmployee('');
         if (assignedFirearms && assignedFirearms.length > 0) {
           // Get the most recent assignment
           const currentFirearm = assignedFirearms[0];
@@ -389,7 +389,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
 
     try {
       setLoading(true);
-      await performanceService.createPerformanceNote();
+      await performanceService.createPerformanceNote({});
 
       // Reset form
       setNewPerformanceNote({
@@ -466,7 +466,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
           
           if (currentAssignment) {
             // Assign firearm to employee at their current site
-            await firearmService.assignFirearm();
+            await firearmService.assignFirearm('', '');
             console.log('✅ Firearm assigned successfully');
           } else {
             console.log('⚠️ Employee not assigned to any site, cannot assign firearm');
@@ -495,7 +495,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         } else {
           // Create new rest period
           console.log('🆕 Creating new rest period');
-          await gearService.createRestPeriod();
+          await gearService.createRestPeriod({});
           console.log('✅ Rest period created successfully');
         }
       } else {
@@ -522,7 +522,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         } else {
           // Create new leave period
           console.log('🆕 Creating new leave period');
-          await gearService.createLeavePeriod();
+          await gearService.createLeavePeriod({});
           console.log('✅ Leave period created successfully');
         }
       } else {

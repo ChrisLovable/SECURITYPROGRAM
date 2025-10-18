@@ -418,10 +418,10 @@ export const shiftService = {
   async createShiftAssignment(assignment: any): Promise<any> {
     return assignment
   },
-  async updateShiftAssignment(id: string, updates: any): Promise<any> {
+  async updateShiftAssignment(_id: string, updates: any): Promise<any> {
     return updates
   },
-  async deleteShiftAssignment(id: string): Promise<void> {
+  async deleteShiftAssignment(_id: string): Promise<void> {
     return
   }
 }
