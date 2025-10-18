@@ -61,8 +61,8 @@ export default async function handler(req: Request) {
       headers: { 'Content-Type': 'application/json' }
     })
   } catch (error) {
-    console.error('Error in alerts API:', error)
-    return new Response(JSON.stringify({ error: error.message }), {
+    console.error('Error in alerts API:', error as Error)
+    return new Response(JSON.stringify({ error: (error as Error).message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     })

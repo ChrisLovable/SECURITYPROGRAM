@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { db } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
-import { Button, Card, StatusBadge, PageHeader, StatsCard, EmptyState } from '@/components/ui/MobileComponents'
+import { Button, Card, StatusBadge, PageHeader, StatsCard, EmptyState, Input, Select, Textarea } from '@/components/ui/MobileComponents'
 import { getGuardStatus, getNextOnDate, getNextOffDate, formatDateWithDay } from '@/utils/scheduling'
 
 export default function GuardPortal() {
@@ -386,20 +386,20 @@ function LeaveRequestForm({ guard, onClose }: { guard: any, onClose: () => void 
           label="Start Date"
           type="date"
           value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          onChange={(e: any) => setStartDate(e.target.value)}
         />
         
         <Input
           label="End Date"
           type="date"
           value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+          onChange={(e: any) => setEndDate(e.target.value)}
         />
         
         <Textarea
           label="Reason (Optional)"
           value={reason}
-          onChange={(e) => setReason(e.target.value)}
+          onChange={(e: any) => setReason(e.target.value)}
           rows={3}
           placeholder="Tell us why you need time off..."
         />
@@ -418,7 +418,7 @@ function LeaveRequestForm({ guard, onClose }: { guard: any, onClose: () => void 
 }
 
 // Swap Request Form Component
-function SwapRequestForm({ guard, onClose }: { guard: any, onClose: () => void }) {
+function SwapRequestForm({ onClose }: { onClose: () => void }) {
   const [toGuard, setToGuard] = useState('')
   const [site, setSite] = useState('')
   const [startDate, setStartDate] = useState('')
@@ -439,14 +439,14 @@ function SwapRequestForm({ guard, onClose }: { guard: any, onClose: () => void }
         <Select
           label="Swap With Guard"
           value={toGuard}
-          onChange={(e) => setToGuard(e.target.value)}
+          onChange={(e: any) => setToGuard(e.target.value)}
           options={[{ value: 'G001', label: 'G001 - John Smith' }]} // Simplified
         />
         
         <Select
           label="Site"
           value={site}
-          onChange={(e) => setSite(e.target.value)}
+          onChange={(e: any) => setSite(e.target.value)}
           options={[{ value: 'site1', label: 'Site 1' }]} // Simplified
         />
         
@@ -454,20 +454,20 @@ function SwapRequestForm({ guard, onClose }: { guard: any, onClose: () => void }
           label="Start Date"
           type="date"
           value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          onChange={(e: any) => setStartDate(e.target.value)}
         />
         
         <Input
           label="End Date"
           type="date"
           value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+          onChange={(e: any) => setEndDate(e.target.value)}
         />
         
         <Textarea
           label="Reason (Optional)"
           value={reason}
-          onChange={(e) => setReason(e.target.value)}
+          onChange={(e: any) => setReason(e.target.value)}
           rows={3}
           placeholder="Why do you need to swap shifts?"
         />

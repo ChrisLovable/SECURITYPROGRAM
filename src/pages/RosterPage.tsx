@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { db } from '@/lib/supabase'
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, addMonths, subMonths } from 'date-fns'
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, addMonths, subMonths } from 'date-fns'
 
 export default function RosterPage() {
   const [currentMonth, setCurrentMonth] = useState(new Date())
@@ -56,9 +56,6 @@ export default function RosterPage() {
     return cyclePosition < 60 ? 'ON' : 'OFF'
   }
 
-  const getUnfilledCount = (date: Date) => {
-    const dateAssignments = getAssignmentsForDate(date)
-    return dateAssignments.filter(a => a.status === 'unfilled').length
   }
 
   return (
