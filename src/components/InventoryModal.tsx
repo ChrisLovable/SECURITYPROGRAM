@@ -137,7 +137,7 @@ export default function InventoryModal({ isOpen, onClose }: InventoryModalProps)
 
     try {
       setLoading(true);
-      await inventoryService.assignEquipment(selectedItem, selectedEmployee, 'System Admin', assignmentNotes);
+      await inventoryService.assignEquipment(selectedItem, selectedEmployee, new Date().toISOString(), assignmentNotes);
       setSelectedEmployee('');
       setSelectedItem('');
       setAssignmentNotes('');
@@ -157,7 +157,7 @@ export default function InventoryModal({ isOpen, onClose }: InventoryModalProps)
 
     try {
       setLoading(true);
-      await inventoryService.returnEquipment(assignmentId, reason);
+      await inventoryService.returnEquipment(assignmentId, new Date().toISOString());
       await loadData();
       alert('✅ Equipment returned successfully!');
     } catch (error) {

@@ -230,25 +230,54 @@ export const leaveService = {
 
 export const inventoryService = {
   async getAllItems(): Promise<any[]> {
-    return []
+    const { data, error } = await supabase.from('inventory_items').select('*')
+    if (error) throw error
+    return data || []
   },
-  async createItem(): Promise<any> {
-    throw new Error('Not implemented yet')
+  async createItem(item: any): Promise<any> {
+    const { data, error } = await supabase.from('inventory_items').insert([item])
+    if (error) throw error
+    return data
   },
-  async createInventoryItem(): Promise<any> {
-    throw new Error('Not implemented yet')
+  async createInventoryItem(item: any): Promise<any> {
+    const { data, error } = await supabase.from('inventory_items').insert([item])
+    if (error) throw error
+    return data
   },
-  async updateItem(): Promise<any> {
-    throw new Error('Not implemented yet')
+  async updateItem(id: string, updates: any): Promise<any> {
+    const { data, error } = await supabase.from('inventory_items').update(updates).eq('id', id)
+    if (error) throw error
+    return data
   },
-  async deleteItem(): Promise<void> {
-    throw new Error('Not implemented yet')
+  async deleteItem(id: string): Promise<void> {
+    const { error } = await supabase.from('inventory_items').delete().eq('id', id)
+    if (error) throw error
   },
-  async assignEquipment(): Promise<any> {
-    throw new Error('Not implemented yet')
+  async assignEquipment(itemId: string, employeeId: string, assignedAt: string, notes: string): Promise<any> {
+    const { data, error } = await supabase.from('equipment_assignments').insert([
+      { item_id: itemId, employee_id: employeeId, assigned_at: assignedAt, notes }
+    ])
+    if (error) throw error
+    return data
   },
-  async returnEquipment(): Promise<any> {
-    throw new Error('Not implemented yet')
+  async returnEquipment(itemId: string, returnedAt: string): Promise<any> {
+    const { data, error } = await supabase
+      .from('equipment_assignments')
+      .update({ returned_at: returnedAt })
+      .eq('item_id', itemId)
+      .is('returned_at', null)
+    if (error) throw error
+    return data
+  },
+  async getEquipmentAssignments(): Promise<any[]> {
+    const { data, error } = await supabase.from('equipment_assignments').select('*')
+    if (error) throw error
+    return data || []
+  },
+  async getMaintenanceRecords(): Promise<any[]> {
+    const { data, error } = await supabase.from('maintenance_records').select('*')
+    if (error) throw error
+    return data || []
   }
 }
 
@@ -289,22 +318,22 @@ export const gearService = {
   async getLeaveBalance(_employeeId: string): Promise<any> {
     return 0
   },
-  async getLeaveBalanceHistory(employeeId: string): Promise<any[]> {
+  async getLeaveBalanceHistory(_employeeId: string): Promise<any[]> {
     return []
   },
-  async createRestPeriod(restPeriod: any): Promise<any> {
+  async createRestPeriod(_restPeriod: any): Promise<any> {
     return restPeriod
   },
-  async createLeavePeriod(leavePeriod: any): Promise<any> {
+  async createLeavePeriod(_leavePeriod: any): Promise<any> {
     return leavePeriod
   },
-  async updateRestPeriod(id: string, updates: any): Promise<any> {
+  async updateRestPeriod(_id: string, _updates: any): Promise<any> {
     return updates
   },
-  async updateLeavePeriod(id: string, updates: any): Promise<any> {
+  async updateLeavePeriod(_id: string, _updates: any): Promise<any> {
     return updates
   },
-  async upsertEmployeeGear(employeeId: string, gear: any): Promise<any> {
+  async upsertEmployeeGear(_employeeId: string, _gear: any): Promise<any> {
     return gear
   }
 }

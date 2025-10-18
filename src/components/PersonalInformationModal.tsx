@@ -178,7 +178,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
       
       // Load gear information for this employee
       try {
-        const gear = await gearService.getEmployeeGear(employeeId);
+        const gear = await gearService.getEmployeeGear();
         if (gear) {
           setGearInfo(gear);
         } else {
@@ -305,12 +305,12 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
       // Load leave balance for this employee
       try {
         console.log('🔄 Loading leave balance for employee:', employeeId);
-        const balance = await gearService.getLeaveBalance(employeeId);
+        const balance = await gearService.getLeaveBalance();
         console.log('📊 Leave balance loaded:', balance);
         setLeaveBalance(balance);
         
         // Load leave balance history
-        const history = await gearService.getLeaveBalanceHistory(employeeId);
+        const history = await gearService.getLeaveBalanceHistory();
         console.log('📈 Leave balance history loaded:', history);
         setLeaveBalanceHistory(history);
       } catch (error) {
@@ -448,7 +448,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
       setLoading(true);
       
       // Save employee information
-      await employeeService.updateEmployee(employeeInfo.id, employeeInfo);
+      await employeeService.updateEmployee();
       
       // Save gear information
       await gearService.upsertEmployeeGear();
@@ -490,7 +490,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
           const latestRest = employeeRestPeriods[employeeRestPeriods.length - 1];
           console.log('🔄 Updating existing rest period:', latestRest.id);
           
-          await gearService.updateRestPeriod(latestRest.id);
+          await gearService.updateRestPeriod();
           console.log('✅ Rest period updated successfully');
         } else {
           // Create new rest period
@@ -517,7 +517,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
           const latestLeave = employeeLeavePeriods[employeeLeavePeriods.length - 1];
           console.log('🔄 Updating existing leave period:', latestLeave.id);
           
-          await gearService.updateLeavePeriod(latestLeave.id);
+          await gearService.updateLeavePeriod();
           console.log('✅ Leave period updated successfully');
         } else {
           // Create new leave period
