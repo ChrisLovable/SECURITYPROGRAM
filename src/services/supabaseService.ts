@@ -234,6 +234,19 @@ export const inventoryService = {
     if (error) throw error
     return data || []
   },
+  async getInventoryItems(): Promise<any[]> {
+    const { data, error } = await supabase.from('inventory_items').select('*')
+    if (error) throw error
+    return data || []
+  },
+  async getInventoryStats(): Promise<any> {
+    const { data, error } = await supabase
+      .from('inventory_items')
+      .select('status, count(*)', { count: 'exact' })
+      .group('status')
+    if (error) throw error
+    return data || []
+  },
   async createItem(item: any): Promise<any> {
     const { data, error } = await supabase.from('inventory_items').insert([item])
     if (error) throw error
@@ -312,29 +325,29 @@ export const gearService = {
   async getLeavePeriods(): Promise<any[]> {
     return []
   },
-  async getEmployeeGear(_employeeId: string): Promise<any> {
+  async getEmployeeGear(): Promise<any> {
     return null
   },
-  async getLeaveBalance(_employeeId: string): Promise<any> {
+  async getLeaveBalance(): Promise<any> {
     return 0
   },
-  async getLeaveBalanceHistory(_employeeId: string): Promise<any[]> {
+  async getLeaveBalanceHistory(): Promise<any[]> {
     return []
   },
   async createRestPeriod(_restPeriod: any): Promise<any> {
-    return restPeriod
+    return _restPeriod
   },
   async createLeavePeriod(_leavePeriod: any): Promise<any> {
-    return leavePeriod
+    return _leavePeriod
   },
-  async updateRestPeriod(_id: string, _updates: any): Promise<any> {
-    return updates
+  async updateRestPeriod(): Promise<any> {
+    return {}
   },
-  async updateLeavePeriod(_id: string, _updates: any): Promise<any> {
-    return updates
+  async updateLeavePeriod(): Promise<any> {
+    return {}
   },
-  async upsertEmployeeGear(_employeeId: string, _gear: any): Promise<any> {
-    return gear
+  async upsertEmployeeGear(): Promise<any> {
+    return {}
   }
 }
 
