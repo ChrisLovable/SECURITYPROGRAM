@@ -301,16 +301,28 @@ export const gearService = {
 }
 
 export const performanceService = {
-  async getPerformanceNotes(employeeId: string): Promise<any[]> {
+  async getPerformanceNotes(_employeeId: string): Promise<any[]> {
     return []
   },
-  async addPerformanceNote(note: any): Promise<any> {
-    return note
+  async getEmployeePerformanceNotes(_employeeId: string): Promise<any[]> {
+    return []
   },
-  async updatePerformanceNote(id: string, updates: any): Promise<any> {
-    return updates
+  async addPerformanceNote(_note: any): Promise<any> {
+    return _note
   },
-  async getPerformanceSummary(employeeId: string): Promise<any> {
+  async createPerformanceNote(_note: any): Promise<any> {
+    return _note
+  },
+  async updatePerformanceNote(_id: string, _updates: any): Promise<any> {
+    return _updates
+  },
+  async deletePerformanceNote(_id: string): Promise<void> {
+    return
+  },
+  async getPerformanceSummary(_employeeId: string): Promise<any> {
+    return null
+  },
+  async getEmployeePerformanceSummary(_employeeId: string): Promise<any> {
     return null
   }
 }

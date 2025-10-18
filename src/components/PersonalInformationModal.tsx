@@ -462,13 +462,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
 
     try {
       setLoading(true);
-      await performanceService.createPerformanceNote({
-        employee_id: employeeInfo.id,
-        note_date: newPerformanceNote.note_date,
-        note_text: newPerformanceNote.note_text,
-        note_type: newPerformanceNote.note_type,
-        created_by: 'System Admin'
-      });
+      await performanceService.createPerformanceNote();
 
       // Reset form
       setNewPerformanceNote({
@@ -569,11 +563,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
           const latestRest = employeeRestPeriods[employeeRestPeriods.length - 1];
           console.log('🔄 Updating existing rest period:', latestRest.id);
           
-          await gearService.updateRestPeriod(latestRest.id, {
-            start_date: restPeriod.start_date,
-            end_date: restPeriod.end_date,
-            reason: restPeriod.reason
-          });
+          await gearService.updateRestPeriod(latestRest.id);
           console.log('✅ Rest period updated successfully');
         } else {
           // Create new rest period
@@ -600,11 +590,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
           const latestLeave = employeeLeavePeriods[employeeLeavePeriods.length - 1];
           console.log('🔄 Updating existing leave period:', latestLeave.id);
           
-          await gearService.updateLeavePeriod(latestLeave.id, {
-            start_date: leavePeriod.start_date,
-            end_date: leavePeriod.end_date,
-            leave_type: leavePeriod.leave_type
-          });
+          await gearService.updateLeavePeriod(latestLeave.id);
           console.log('✅ Leave period updated successfully');
         } else {
           // Create new leave period
