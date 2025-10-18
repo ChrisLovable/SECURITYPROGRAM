@@ -12,6 +12,7 @@ interface SiteInfo {
   name: string;
   address?: string;
   guards_assigned?: string[];
+  dont_work_with_guards?: string[];
   monthly_invoice_amount?: number;
   bushveld_vehicle?: boolean;
   owner_vehicle?: boolean;
@@ -44,7 +45,7 @@ export default function SiteInformationModal({ isOpen, onClose }: SiteInformatio
     bushveld_vehicle: false,
     owner_vehicle: false,
     special_instructions: '',
-    assigned_guards: [],
+    guards_assigned: [],
     dont_work_with_guards: []
   });
 

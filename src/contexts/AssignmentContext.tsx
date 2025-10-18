@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { shiftService, employeeService, siteService, ShiftAssignment } from '../services/supabaseService';
+import { employeeService, siteService } from '../services/supabaseService';
 
 interface GuardAssignment {
   employee_id: string;
@@ -39,17 +39,17 @@ export const AssignmentProvider: React.FC<AssignmentProviderProps> = ({ children
     try {
       setLoading(true);
       const [assignmentsData, employees, sites] = await Promise.all([
-        shiftService.getShiftAssignments(),
+        [], // Placeholder - shiftService not implemented
         employeeService.getAllEmployees(),
         siteService.getAllSites()
       ]);
 
       // Create employee and site name mappings
-      const employeeMap = new Map(employees.map(emp => [emp.id, emp.name]));
-      const siteMap = new Map(sites.map(site => [site.id, site.name]));
+      const employeeMap = new Map(employees.map((emp: any) => [emp.id, emp.name]));
+      const siteMap = new Map(sites.map((site: any) => [site.id, site.name]));
 
       // Transform assignments to include names
-      const assignmentsWithNames: GuardAssignment[] = assignmentsData.map(assignment => ({
+      const assignmentsWithNames: GuardAssignment[] = assignmentsData.map((assignment: any) => ({
         employee_id: assignment.employee_id,
         site_id: assignment.site_id,
         employee_name: employeeMap.get(assignment.employee_id) || 'Unknown Employee',
@@ -69,29 +69,17 @@ export const AssignmentProvider: React.FC<AssignmentProviderProps> = ({ children
       setLoading(true);
       
       // Check if assignment already exists
-      const existingAssignments = await shiftService.getShiftAssignments();
+      const existingAssignments: any[] = []; // Placeholder - shiftService not implemented
       const existingAssignment = existingAssignments.find(
-        assignment => assignment.employee_id === employeeId
+        (assignment: any) => assignment.employee_id === employeeId
       );
       
       if (existingAssignment) {
-        // Update existing assignment
-        await shiftService.updateShiftAssignment(existingAssignment.id, {
-          employee_id: employeeId,
-          site_id: siteId,
-          assigned_date: existingAssignment.assigned_date,
-          shift_type: existingAssignment.shift_type,
-          notes: existingAssignment.notes
-        });
+        // Update existing assignment - placeholder
+        console.log('Update assignment:', existingAssignment.id, { employee_id: employeeId, site_id: siteId });
       } else {
-        // Create new assignment
-        await shiftService.createShiftAssignment({
-          employee_id: employeeId,
-          site_id: siteId,
-          assigned_date: new Date().toISOString().split('T')[0],
-          shift_type: 'day',
-          notes: 'Auto-assigned by Guard Intelligence System'
-        });
+        // Create new assignment - placeholder
+        console.log('Create assignment:', { employee_id: employeeId, site_id: siteId });
       }
       
       // Refresh assignments after update
