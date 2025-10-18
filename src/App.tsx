@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { supabase } from './lib/supabase'
 import { AuthProvider } from './contexts/AuthContext'
 import { AssignmentProvider } from './contexts/AssignmentContext'
 import Layout from './components/Layout'

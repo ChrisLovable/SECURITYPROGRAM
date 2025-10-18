@@ -199,6 +199,9 @@ export const employeeService = {
   async getAllEmployees(): Promise<any[]> {
     return []
   },
+  async getActiveEmployees(): Promise<any[]> {
+    return []
+  },
   async createEmployee(): Promise<any> {
     throw new Error('Not implemented yet')
   },
@@ -261,5 +264,26 @@ export const firearmService = {
   },
   async assignFirearm(firearmId: string, employeeId: string): Promise<any> {
     return null
+  }
+}
+
+export const gearService = {
+  async getRestPeriods(): Promise<any[]> {
+    return []
+  },
+  async getLeavePeriods(): Promise<any[]> {
+    return []
+  },
+  async createRestPeriod(restPeriod: any): Promise<any> {
+    return restPeriod
+  },
+  async createLeavePeriod(leavePeriod: any): Promise<any> {
+    return leavePeriod
+  },
+  async updateRestPeriod(id: string, updates: any): Promise<any> {
+    return updates
+  },
+  async updateLeavePeriod(id: string, updates: any): Promise<any> {
+    return updates
   }
 }

@@ -369,11 +369,30 @@ export default function DashboardModal({ isOpen, onClose }: DashboardModalProps)
                     options={{
                       ...options,
                       plugins: {
-                        ...options.plugins,
                         title: {
                           display: false,
-                        }
-                      }
+                        },
+                        legend: {
+                          display: true,
+                        },
+                        datalabels: {
+                          display: function(context: any) {
+                            // Show data labels only on every 5th bar
+                            return context.dataIndex % 5 === 0;
+                          },
+                          color: 'black',
+                          font: {
+                            weight: 'bold' as const,
+                            size: 10,
+                          },
+                          anchor: 'end',
+                          align: 'top',
+                          offset: 5,
+                          formatter: function(value: number) {
+                            return value > 0 ? value : '';
+                          }
+                        } as any
+                      } as any
                     }} 
                   />
                 </div>
@@ -391,11 +410,30 @@ export default function DashboardModal({ isOpen, onClose }: DashboardModalProps)
                     options={{
                       ...options,
                       plugins: {
-                        ...options.plugins,
                         title: {
                           display: false,
-                        }
-                      }
+                        },
+                        legend: {
+                          display: true,
+                        },
+                        datalabels: {
+                          display: function(context: any) {
+                            // Show data labels only on every 5th bar
+                            return context.dataIndex % 5 === 0;
+                          },
+                          color: 'black',
+                          font: {
+                            weight: 'bold' as const,
+                            size: 10,
+                          },
+                          anchor: 'end',
+                          align: 'top',
+                          offset: 5,
+                          formatter: function(value: number) {
+                            return value > 0 ? value : '';
+                          }
+                        } as any
+                      } as any
                     }} 
                   />
                 </div>
@@ -413,11 +451,30 @@ export default function DashboardModal({ isOpen, onClose }: DashboardModalProps)
                     options={{
                       ...options,
                       plugins: {
-                        ...options.plugins,
                         title: {
                           display: false,
-                        }
-                      }
+                        },
+                        legend: {
+                          display: true,
+                        },
+                        datalabels: {
+                          display: function(context: any) {
+                            // Show data labels only on every 5th bar
+                            return context.dataIndex % 5 === 0;
+                          },
+                          color: 'black',
+                          font: {
+                            weight: 'bold' as const,
+                            size: 10,
+                          },
+                          anchor: 'end',
+                          align: 'top',
+                          offset: 5,
+                          formatter: function(value: number) {
+                            return value > 0 ? value : '';
+                          }
+                        } as any
+                      } as any
                     }} 
                   />
                 </div>
@@ -491,12 +548,12 @@ export default function DashboardModal({ isOpen, onClose }: DashboardModalProps)
                               borderDash: [5, 5],
                               label: {
                                 content: 'Today',
-                                enabled: true,
+                                display: true,
                                 position: 'top'
                               }
-                            }
-                          }
-                        }
+                            } as any
+                          } as any
+                        } as any,
                       },
                       scales: {
                         y: {
