@@ -403,7 +403,7 @@ export default function InventoryModal({ isOpen, onClose }: InventoryModalProps)
                             <td className="px-3 py-2">{item.brand} {item.model}</td>
                             <td className="px-3 py-2">{item.serial_number}</td>
                             <td className="px-3 py-2">
-                              <span className={`px-2 py-1 rounded-full text-xs ${statusColors[item.status]}`}>
+                              <span className={`px-2 py-1 rounded-full text-xs ${statusColors[item.status as keyof typeof statusColors]}`}>
                                 {item.status}
                               </span>
                             </td>

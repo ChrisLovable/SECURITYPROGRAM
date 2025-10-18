@@ -235,10 +235,19 @@ export const inventoryService = {
   async createItem(): Promise<any> {
     throw new Error('Not implemented yet')
   },
+  async createInventoryItem(): Promise<any> {
+    throw new Error('Not implemented yet')
+  },
   async updateItem(): Promise<any> {
     throw new Error('Not implemented yet')
   },
   async deleteItem(): Promise<void> {
+    throw new Error('Not implemented yet')
+  },
+  async assignEquipment(): Promise<any> {
+    throw new Error('Not implemented yet')
+  },
+  async returnEquipment(): Promise<any> {
     throw new Error('Not implemented yet')
   }
 }

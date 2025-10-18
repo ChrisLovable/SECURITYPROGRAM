@@ -61,79 +61,6 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
   const [loading, setLoading] = useState(false);
   const { updateAssignment, refreshAssignments, getAssignmentForEmployee } = useAssignments();
 
-  // Experience level mapping for each employee
-  const employeeExperienceLevels: Record<string, string> = {
-    'FRANS DANIEL': 'Veteran',
-    'DANIEL KARUEMBI NDARA': 'Veteran',
-    'MBWALE Tauma': 'Veteran',
-    'THOMAS WALLACE': 'Experience',
-    'LEONARD JONAS': 'Veteran',
-    'SHALONGOJONAS (Danke)': 'Veteran',
-    'MIKE NDISHISI (Mike Mike)': 'Veteran',
-    'KAMAAI TJIVINDA': 'Veteran',
-    'ANGULA MALAKIA': 'Veteran',
-    'Macedo Munyachi Segunda': 'Experience',
-    'BONIFASIUS LAZARUS': 'Veteran',
-    'FICIMON NDOVALA': 'Veteran',
-    'DAVID JOHANNES': 'Veteran',
-    'JONAS NGIYONANYE (Fish)': 'Veteran',
-    'VETOPOUUAMUTAMBO (Lucky)': 'Veteran',
-    'IMMANUEL TVATLIFA': 'Veteran',
-    'REN KAFIDI': 'Veteran',
-    'Daniel SHILONGO': 'Veteran',
-    'HTJIUHARO': 'Veteran',
-    'PETRUS PAULUS MBAMBI': 'Veteran',
-    'FERNANANDU BUSH': 'Veteran',
-    'KANTANF N': 'Veteran',
-    'JOHANNES HEKANDJO': 'Experience',
-    'ALI LUS HAUFIKU': 'Experience',
-    'Mayurdu A': 'Experience',
-    'KAV Kakuva': 'Experience',
-    'Nohannes S Ndala': 'Experience',
-    'Homanus Karubora': 'Experience',
-    'Linda Hadmbwasha (leo)': 'Experience',
-    'Polrus Iyokulumc': 'Experience',
-    'Novalo 1 ounc': 'Experience',
-    'Perlus Gidoon': 'Experience',
-    'John Josoph': 'Experience',
-    'M Masutu': 'Experience',
-    'Мокшакоще Касори FOMOS': 'Experience',
-    'Thomes I wish': 'Experience',
-    'Mascka Joseph Nomouram': 'Experience',
-    'David Jons Katembo': 'Intermediate',
-    'David Jont Katembo': 'Unknown',
-    'Frans John Hennie': 'Experience',
-    'Blasius Hidengwe': 'Experience',
-    'Shahafifange Hpanduius (luke)': 'Experience',
-    'Lukas Makua': 'Experience',
-    'CMUkuw': 'Experience',
-    'Daniel Kiino': 'Experience',
-    'BP Moya (prince)': 'Experience',
-    'Gabriel Antonius': 'Intermediate',
-    'Oscar Visnjamba': 'Intermediate',
-    'Leon Zasiman': 'Intermediate',
-    'Thomas Nghishko': 'Intermediate',
-    'Ndumba Mingandja': 'Intermediate',
-    'Chambals Segunda': 'Intermediate',
-    'Jonas Shefashke': 'Intermediate',
-    'Jordan Frans': 'Intermediate',
-    'Taleni Mangongo': 'Intermediate',
-    'Al Magau': 'Intermediate',
-    'Ndyolomimu M': 'Intermediate',
-    'Jospephat Kitopha': 'Intermediate',
-    'Augusto maguel Jamba': 'Intermediate',
-    'PV Kalura': 'Intermediate',
-    'Faustina Kawe': 'Intermediate',
-    'Simson Shafodino': 'Intermediate',
-    'Luis Shkolepo': 'Intermediate',
-    'Aser Magongo': 'Intermediate',
-    'EE Tobias': 'Intermediate',
-    'Michael David Motshego': 'Intermediate',
-    'Petrus Mwale': 'Intermediate',
-    'Profilius Mwetupaka': 'Intermediate',
-    'Bafana Tjjshurs': 'New Recruit'
-  };
-
   // Load employees from database
   useEffect(() => {
     const loadEmployees = async () => {
@@ -524,7 +451,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
       await employeeService.updateEmployee(employeeInfo.id, employeeInfo);
       
       // Save gear information
-      await gearService.upsertEmployeeGear(employeeInfo.id, gearInfo);
+      await gearService.upsertEmployeeGear();
       
       // Handle firearm assignment if selected
       if (selectedFirearm) {
@@ -568,7 +495,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         } else {
           // Create new rest period
           console.log('🆕 Creating new rest period');
-          await gearService.createRestPeriod(employeeInfo.id, restPeriod);
+          await gearService.createRestPeriod();
           console.log('✅ Rest period created successfully');
         }
       } else {
@@ -595,7 +522,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         } else {
           // Create new leave period
           console.log('🆕 Creating new leave period');
-          await gearService.createLeavePeriod(employeeInfo.id, leavePeriod);
+          await gearService.createLeavePeriod();
           console.log('✅ Leave period created successfully');
         }
       } else {
