@@ -7,12 +7,6 @@ interface FirearmInventoryModalProps {
   onClose: () => void;
 }
 
-interface FirearmType {
-  id: string;
-  type_name: string;
-  category: string;
-}
-
 interface Firearm {
   firearm_id: string;
   serial_number: string;

@@ -315,6 +315,31 @@ export const firearmService = {
   },
   async assignFirearm(_firearmId: string, _employeeId: string): Promise<any> {
     return null
+  },
+  async getInventorySummary(): Promise<any> {
+    const { data, error } = await supabase
+      .from('firearms')
+      .select('status')
+      .neq('status', null)
+    if (error) throw error
+    return data || []
+  },
+  async unassignFirearm(firearmId: string): Promise<any> {
+    const { data, error } = await supabase
+      .from('firearm_assignments')
+      .update({ returned_at: new Date().toISOString() })
+      .eq('firearm_id', firearmId)
+      .is('returned_at', null)
+    if (error) throw error
+    return data
+  },
+  async updateFirearmStatus(firearmId: string, status: string): Promise<any> {
+    const { data, error } = await supabase
+      .from('firearms')
+      .update({ status })
+      .eq('id', firearmId)
+    if (error) throw error
+    return data
   }
 }
 
@@ -348,6 +373,41 @@ export const gearService = {
   },
   async upsertEmployeeGear(): Promise<any> {
     return {}
+  }
+}
+
+export const performanceService = {
+  async getPerformanceNotes(_employeeId: string): Promise<any[]> {
+    return []
+  },
+  async getEmployeePerformanceNotes(_employeeId: string): Promise<any[]> {
+    return []
+  },
+  async addPerformanceNote(_note: any): Promise<any> {
+    return _note
+  },
+  async createPerformanceNote(_note: any): Promise<any> {
+    return _note
+  },
+  async updatePerformanceNote(_id: string, _updates: any): Promise<any> {
+    return _updates
+  },
+  async deletePerformanceNote(_id: string): Promise<void> {
+    return
+  },
+  async getPerformanceSummary(_employeeId: string): Promise<any> {
+    return null
+  },
+  async getEmployeePerformanceSummary(_employeeId: string): Promise<any> {
+    return null
+  },
+  async getPerformanceByEmployee(employeeId: string): Promise<any> {
+    const { data, error } = await supabase
+      .from('performance')
+      .select('*')
+      .eq('employee_id', employeeId)
+    if (error) throw error
+    return data || []
   }
 }
 
