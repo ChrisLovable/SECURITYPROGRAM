@@ -32,6 +32,7 @@ export default function SiteInformationModal({ isOpen, onClose }: SiteInformatio
   const [siteInfo, setSiteInfo] = useState<SiteInfo | null>(null);
   const [showSiteDetails, setShowSiteDetails] = useState(false);
   const [showAddSiteModal, setShowAddSiteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [newSite, setNewSite] = useState({
     name: '',
     address: '',
@@ -138,8 +139,9 @@ export default function SiteInformationModal({ isOpen, onClose }: SiteInformatio
       setSiteInfo(siteData);
     } catch (error) {
       console.error('❌ Error loading site:', error);
-      console.error('Error details:', error.message, error.code, error.details);
-      alert(`Failed to load site information: ${error.message || 'Unknown error'}. Please run the database migration script first.`);
+      const errorObj = error as any;
+      console.error('Error details:', errorObj.message, errorObj.code, errorObj.details);
+      alert(`Failed to load site information: ${errorObj.message || 'Unknown error'}. Please run the database migration script first.`);
     }
   };
 
@@ -165,7 +167,7 @@ export default function SiteInformationModal({ isOpen, onClose }: SiteInformatio
       console.log('🔄 Sites reloaded:', updatedSites.length);
     } catch (error) {
       console.error('❌ Error saving site:', error);
-      alert(`Failed to save site information: ${error.message || 'Unknown error'}`);
+      alert(`Failed to save site information: ${(error as any).message || 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
@@ -195,7 +197,7 @@ export default function SiteInformationModal({ isOpen, onClose }: SiteInformatio
         bushveld_vehicle: false,
         owner_vehicle: false,
         special_instructions: '',
-        assigned_guards: [],
+        guards_assigned: [],
         dont_work_with_guards: []
       });
       

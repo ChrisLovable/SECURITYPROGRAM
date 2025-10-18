@@ -12,6 +12,17 @@ export const siteService = {
     return data || []
   },
 
+  async getSite(id: string): Promise<any> {
+    const { data, error } = await supabase
+      .from('sites')
+      .select('*')
+      .eq('id', id)
+      .single()
+    
+    if (error) throw error
+    return data
+  },
+
   async createSite(site: any): Promise<any> {
     const { data, error } = await supabase
       .from('sites')
