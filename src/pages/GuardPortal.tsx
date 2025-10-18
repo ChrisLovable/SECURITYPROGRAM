@@ -20,12 +20,12 @@ export default function GuardPortal() {
   // Get guard's assignments for next 7 days
   const { data: assignments } = useQuery({
     queryKey: ['guard-assignments', currentGuard?.id],
-    queryFn: () => {
-      if (!currentGuard) return { data: [] }
+    queryFn: async () => {
+      if (!currentGuard) return { data: [], error: null }
       const today = new Date()
       const nextWeek = new Date(today)
       nextWeek.setDate(nextWeek.getDate() + 7)
-      return db.getAssignmentsForGuard(
+      return await db.getAssignmentsForGuard(
         currentGuard.id,
         today.toISOString().split('T')[0],
         nextWeek.toISOString().split('T')[0]
@@ -37,14 +37,17 @@ export default function GuardPortal() {
   // Get guard's leave requests
   const { data: leaveRequests } = useQuery({
     queryKey: ['leave-requests', currentGuard?.id],
-    queryFn: () => db.getLeaveRequests(currentGuard?.id || ''),
+    queryFn: async () => {
+      if (!currentGuard) return { data: [], error: null }
+      return await db.getLeaveRequests(currentGuard.id)
+    },
     enabled: !!currentGuard
   })
 
   // Get guard's swaps
   const { data: swaps } = useQuery({
     queryKey: ['swaps'],
-    queryFn: () => db.getSwaps()
+    queryFn: async () => await db.getSwaps()
   })
 
   const guardSwaps = swaps?.data?.filter(s => 
@@ -341,7 +344,6 @@ function SwapsTab({ swaps, guard }: { swaps: any[], guard: any }) {
 
       {showSwapForm && (
         <SwapRequestForm 
-          guard={guard}
           onClose={() => setShowSwapForm(false)}
         />
       )}
@@ -350,7 +352,7 @@ function SwapsTab({ swaps, guard }: { swaps: any[], guard: any }) {
 }
 
 // Leave Request Form Component
-function LeaveRequestForm({ guard, onClose }: { guard: any, onClose: () => void }) {
+function LeaveRequestForm({ onClose }: { onClose: () => void }) {
   const [leaveType, setLeaveType] = useState('')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
