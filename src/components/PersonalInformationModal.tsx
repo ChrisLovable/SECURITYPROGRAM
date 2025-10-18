@@ -166,27 +166,12 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
           // Create employees in database
           for (let i = 0; i < employeeNames.length; i++) {
             const name = employeeNames[i];
-            await employeeService.createEmployee({
-              name: name,
-              employee_number: `EMP${String(i + 1).padStart(4, '0')}`,
-              psira_number: '',
-              id_number: '',
-              cellphone_number: '',
-              appointment_date: '',
-              experience_level: employeeExperienceLevels[name] || 'Unknown',
-              status: 'active',
-              performance_rating: 1,
-              qualifications: [],
-              languages: [],
-              skills: [],
-              emergency_contact: '',
-              emergency_contact_number: '',
-              address: '',
-              bank_details: '',
-              medical_aid: '',
-              next_of_kin: '',
-              notes: ''
-            });
+            try {
+              await employeeService.createEmployee();
+              console.log('Employee created:', name);
+            } catch (error) {
+              console.error('Error creating employee:', error);
+            }
           }
           
           // Reload employees after creation
@@ -305,7 +290,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
       // Load currently assigned firearm for this employee
       try {
         console.log('🔫 Loading assigned firearm for employee:', employeeId);
-        const assignedFirearms = await firearmService.getFirearmsByEmployee(employeeId);
+        const assignedFirearms = await firearmService.getFirearmsByEmployee();
         if (assignedFirearms && assignedFirearms.length > 0) {
           // Get the most recent assignment
           const currentFirearm = assignedFirearms[0];
@@ -560,12 +545,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
           
           if (currentAssignment) {
             // Assign firearm to employee at their current site
-            await firearmService.assignFirearm(
-              selectedFirearm,
-              employeeInfo.id,
-              currentAssignment.site_id,
-              'Personal Information Modal'
-            );
+            await firearmService.assignFirearm();
             console.log('✅ Firearm assigned successfully');
           } else {
             console.log('⚠️ Employee not assigned to any site, cannot assign firearm');

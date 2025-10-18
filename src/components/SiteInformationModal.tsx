@@ -26,7 +26,7 @@ interface SiteInfo {
 }
 
 export default function SiteInformationModal({ isOpen, onClose }: SiteInformationModalProps) {
-  const { assignments, loading: contextLoading, getAssignmentsForSite } = useAssignments();
+  const { assignments, loading: _contextLoading, getAssignmentsForSite } = useAssignments();
   const [sites, setSites] = useState<SiteInfo[]>([]);
   const [selectedSite, setSelectedSite] = useState<string>('');
   const [siteInfo, setSiteInfo] = useState<SiteInfo | null>(null);

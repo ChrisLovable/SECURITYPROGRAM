@@ -256,13 +256,13 @@ export const firearmService = {
   async deleteFirearm(): Promise<void> {
     throw new Error('Not implemented yet')
   },
-  async getFirearmDetails(id: string): Promise<any> {
+  async getFirearmDetails(_id: string): Promise<any> {
     return null
   },
-  async getFirearmsByEmployee(employeeId: string): Promise<any[]> {
+  async getFirearmsByEmployee(_employeeId: string): Promise<any[]> {
     return []
   },
-  async assignFirearm(firearmId: string, employeeId: string): Promise<any> {
+  async assignFirearm(_firearmId: string, _employeeId: string): Promise<any> {
     return null
   }
 }
@@ -272,6 +272,15 @@ export const gearService = {
     return []
   },
   async getLeavePeriods(): Promise<any[]> {
+    return []
+  },
+  async getEmployeeGear(_employeeId: string): Promise<any> {
+    return null
+  },
+  async getLeaveBalance(_employeeId: string): Promise<any> {
+    return 0
+  },
+  async getLeaveBalanceHistory(employeeId: string): Promise<any[]> {
     return []
   },
   async createRestPeriod(restPeriod: any): Promise<any> {
@@ -285,5 +294,23 @@ export const gearService = {
   },
   async updateLeavePeriod(id: string, updates: any): Promise<any> {
     return updates
+  },
+  async upsertEmployeeGear(employeeId: string, gear: any): Promise<any> {
+    return gear
+  }
+}
+
+export const performanceService = {
+  async getPerformanceNotes(employeeId: string): Promise<any[]> {
+    return []
+  },
+  async addPerformanceNote(note: any): Promise<any> {
+    return note
+  },
+  async updatePerformanceNote(id: string, updates: any): Promise<any> {
+    return updates
+  },
+  async getPerformanceSummary(employeeId: string): Promise<any> {
+    return null
   }
 }

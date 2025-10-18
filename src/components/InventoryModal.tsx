@@ -66,7 +66,8 @@ export default function InventoryModal({ isOpen, onClose }: InventoryModalProps)
     maintenance: 'bg-yellow-100 text-yellow-800',
     damaged: 'bg-red-100 text-red-800',
     lost: 'bg-gray-100 text-gray-800',
-    retired: 'bg-gray-100 text-gray-600'
+    retired: 'bg-gray-100 text-gray-600',
+    returned: 'bg-purple-100 text-purple-800'
   };
 
   useEffect(() => {
