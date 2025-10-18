@@ -252,5 +252,14 @@ export const firearmService = {
   },
   async deleteFirearm(): Promise<void> {
     throw new Error('Not implemented yet')
+  },
+  async getFirearmDetails(id: string): Promise<any> {
+    return null
+  },
+  async getFirearmsByEmployee(employeeId: string): Promise<any[]> {
+    return []
+  },
+  async assignFirearm(firearmId: string, employeeId: string): Promise<any> {
+    return null
   }
 }

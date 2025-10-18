@@ -26,7 +26,7 @@ interface SiteInfo {
 }
 
 export default function SiteInformationModal({ isOpen, onClose }: SiteInformationModalProps) {
-  const { assignments, loading, getAssignmentsForSite } = useAssignments();
+  const { assignments, loading: contextLoading, getAssignmentsForSite } = useAssignments();
   const [sites, setSites] = useState<SiteInfo[]>([]);
   const [selectedSite, setSelectedSite] = useState<string>('');
   const [siteInfo, setSiteInfo] = useState<SiteInfo | null>(null);
@@ -46,8 +46,8 @@ export default function SiteInformationModal({ isOpen, onClose }: SiteInformatio
     bushveld_vehicle: false,
     owner_vehicle: false,
     special_instructions: '',
-    guards_assigned: [],
-    dont_work_with_guards: []
+    guards_assigned: [] as string[],
+    dont_work_with_guards: [] as string[]
   });
 
   // Load sites from database

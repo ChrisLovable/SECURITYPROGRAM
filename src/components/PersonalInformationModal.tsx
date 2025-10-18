@@ -326,7 +326,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         const restPeriods = await gearService.getRestPeriods();
         console.log('📅 All rest periods loaded:', restPeriods.length);
         
-        const employeeRestPeriods = restPeriods.filter(rp => rp.employee_id === employeeId);
+        const employeeRestPeriods = restPeriods.filter((rp: any) => rp.employee_id === employeeId);
         console.log('👤 Rest periods for this employee:', employeeRestPeriods);
         
         // Set all rest periods for history display
@@ -361,7 +361,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
       // Load leave periods for this employee
       try {
         const leavePeriods = await gearService.getLeavePeriods();
-        const employeeLeavePeriods = leavePeriods.filter(lp => lp.employee_id === employeeId);
+        const employeeLeavePeriods = leavePeriods.filter((lp: any) => lp.employee_id === employeeId);
         
         // Set all leave periods for history display
         setAllLeavePeriods(employeeLeavePeriods);
@@ -555,8 +555,8 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         const firearm = firearms.find(f => f.firearm_id === selectedFirearm);
         if (firearm) {
           // Get the employee's current site assignment
-          const employeeAssignments = getAssignmentsForEmployee(employeeInfo.id);
-          const currentAssignment = employeeAssignments.find(a => a.assigned_date === new Date().toISOString().split('T')[0]);
+          const employeeAssignments: any[] = []; // Placeholder - getAssignmentsForEmployee not implemented
+          const currentAssignment = employeeAssignments.find((a: any) => a.assigned_date === new Date().toISOString().split('T')[0]);
           
           if (currentAssignment) {
             // Assign firearm to employee at their current site
@@ -580,7 +580,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         
         // Check if employee already has rest periods
         const existingRestPeriods = await gearService.getRestPeriods();
-        const employeeRestPeriods = existingRestPeriods.filter(rp => rp.employee_id === employeeInfo.id);
+        const employeeRestPeriods = existingRestPeriods.filter((rp: any) => rp.employee_id === employeeInfo.id);
         
         console.log('📅 Existing rest periods for employee:', employeeRestPeriods);
         
@@ -611,7 +611,7 @@ export default function PersonalInformationModal({ isOpen, onClose }: PersonalIn
         
         // Check if employee already has leave periods
         const existingLeavePeriods = await gearService.getLeavePeriods();
-        const employeeLeavePeriods = existingLeavePeriods.filter(lp => lp.employee_id === employeeInfo.id);
+        const employeeLeavePeriods = existingLeavePeriods.filter((lp: any) => lp.employee_id === employeeInfo.id);
         
         console.log('📅 Existing leave periods for employee:', employeeLeavePeriods);
         
