@@ -1,9 +1,8 @@
 import { supabase } from '../lib/supabase'
-import { Guard, Site, Assignment, Swap, Notification, LeaveRequest, UserRole } from '../types'
 
 // Simplified service that only includes working database operations
 export const siteService = {
-  async getAllSites(): Promise<Site[]> {
+  async getAllSites(): Promise<any[]> {
     const { data, error } = await supabase
       .from('sites')
       .select('*')
@@ -13,7 +12,7 @@ export const siteService = {
     return data || []
   },
 
-  async createSite(site: Omit<Site, 'id' | 'created_at'>): Promise<Site> {
+  async createSite(site: any): Promise<any> {
     const { data, error } = await supabase
       .from('sites')
       .insert([site])
@@ -24,7 +23,7 @@ export const siteService = {
     return data
   },
 
-  async updateSite(id: string, updates: Partial<Site>): Promise<Site> {
+  async updateSite(id: string, updates: any): Promise<any> {
     const { data, error } = await supabase
       .from('sites')
       .update(updates)
@@ -47,7 +46,7 @@ export const siteService = {
 }
 
 export const guardService = {
-  async getAllGuards(): Promise<Guard[]> {
+  async getAllGuards(): Promise<any[]> {
     const { data, error } = await supabase
       .from('guards')
       .select('*')
@@ -57,7 +56,7 @@ export const guardService = {
     return data || []
   },
 
-  async createGuard(guard: Omit<Guard, 'id' | 'created_at'>): Promise<Guard> {
+  async createGuard(guard: any): Promise<any> {
     const { data, error } = await supabase
       .from('guards')
       .insert([guard])
@@ -68,7 +67,7 @@ export const guardService = {
     return data
   },
 
-  async updateGuard(id: string, updates: Partial<Guard>): Promise<Guard> {
+  async updateGuard(id: string, updates: any): Promise<any> {
     const { data, error } = await supabase
       .from('guards')
       .update(updates)
@@ -91,7 +90,7 @@ export const guardService = {
 }
 
 export const assignmentService = {
-  async getAssignments(date?: string): Promise<Assignment[]> {
+  async getAssignments(date?: string): Promise<any[]> {
     let query = supabase
       .from('assignments')
       .select('*')
@@ -107,7 +106,7 @@ export const assignmentService = {
     return data || []
   },
 
-  async createAssignment(assignment: Omit<Assignment, 'id' | 'created_at'>): Promise<Assignment> {
+  async createAssignment(assignment: any): Promise<any> {
     const { data, error } = await supabase
       .from('assignments')
       .insert([assignment])
@@ -118,7 +117,7 @@ export const assignmentService = {
     return data
   },
 
-  async updateAssignment(id: string, updates: Partial<Assignment>): Promise<Assignment> {
+  async updateAssignment(id: string, updates: any): Promise<any> {
     const { data, error } = await supabase
       .from('assignments')
       .update(updates)
@@ -141,7 +140,7 @@ export const assignmentService = {
 }
 
 export const swapService = {
-  async getSwaps(): Promise<Swap[]> {
+  async getSwaps(): Promise<any[]> {
     const { data, error } = await supabase
       .from('swaps')
       .select('*')
@@ -151,7 +150,7 @@ export const swapService = {
     return data || []
   },
 
-  async createSwap(swap: Omit<Swap, 'id' | 'created_at'>): Promise<Swap> {
+  async createSwap(swap: any): Promise<any> {
     const { data, error } = await supabase
       .from('swaps')
       .insert([swap])
@@ -162,7 +161,7 @@ export const swapService = {
     return data
   },
 
-  async updateSwap(id: string, updates: Partial<Swap>): Promise<Swap> {
+  async updateSwap(id: string, updates: any): Promise<any> {
     const { data, error } = await supabase
       .from('swaps')
       .update(updates)
